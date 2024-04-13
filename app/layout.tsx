@@ -1,36 +1,34 @@
 import './globals.css'
-import Provider from '@/provider'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import GlobalContext from '@/context'
-import { ReactNode } from 'react'
+import {Provider} from "@/provider";
+import GlobalContext from "@/context";
+import {ReactNode} from "react";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-	title: 'Netflix Clone',
-	description: 'Netflix Clone built with Next.js',
+  title: 'Netflix',
+  description: 'Netflix Clone with Next.js',
 }
 
 export default function RootLayout({
-	children,
-}: Readonly<{
-	children: ReactNode
-}>) {
-	return (
-		<html lang='en'>
-			<body className={inter.className}>
-				<Provider
-					attribute='class'
-					defaultTheme='dark'
-					enableSystem
-					disableTransitionOnChange
-				>
+  children,
+}: {
+  children: ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Provider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <GlobalContext>
-					  {children}
+            {children}
+            <Toaster />
           </GlobalContext>
-				</Provider>
-			</body>
-		</html>
-	)
+        </Provider>
+      </body>
+    </html>
+  )
 }
